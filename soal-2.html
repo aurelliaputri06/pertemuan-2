@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Grid Layout</title>
+        <style>
+            .grid-container {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 20px;
+                background-color: lightcyan;
+                padding: 10px;
+            }
+
+            .grid-item {
+                background-color: rgb(22, 123, 206);
+                color: white;
+                padding: 10px;
+                text-align: left;
+                border-radius: 10px;
+            }
+
+            .grid-item:nth-child(1) {
+                grid-column: span 3;
+            }
+
+            .grid-item:nth-child(2) {
+                grid-column: span 1;
+            }
+
+            .grid-item:nth-child(3) {
+                grid-column: span 2;
+            }
+
+            .grid-item:nth-child(5) {
+                grid-column: span 2;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="grid-container">
+            <div class="grid-item">One</div>
+            <div class="grid-item">Two</div>
+            <div class="grid-item">Three</div>
+            <div></div>
+            <div class="grid-item">Four</div>
+        </div>
+    </body>
+</html>
