@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Halaman Tambah Mahasiswa</title>
+        <link rel="stylesheet" href="./CSS/styeles.css">
+    </head>
+
+    <body>
+        <!-- HTML -->
+        <!-- nampilin jam yang terus diupdate tiap detik -->
+        <div id="clock"></div>
+        
+        <h1>Tambah Mahasiswa</h1>
+
+        <!-- form -->
+        <div id="formContainer">
+            <form id="form">
+                <label for="nama">Nama:</label>
+                <input type="text" id="nama" name="nama" required oninput="toUpperCaseInput(this)">
+
+                <label for="nim">NIM:</label>
+                <input type="number" id="nim" name="nim">
+
+                <label for="gender">Jenis Kelamin:</label>
+                <select id="gender" name="gender">
+                    <option>-- Pilih Jenis Kelamin --</option>
+                    <option value="Laki-laki">Laki-laki</option>
+                    <option value="Perempuan">Perempuan</option>
+                </select>
+
+                <!-- tombol Submit -->
+                <button type="submit" class="submitButton">Submit</button>
+                <!-- tombol untuk menambah form baru -->
+                <button type="button" class="addFormButton">Tambah Form</button>
+            </form>
+        </div>
+        
+        <!-- SCRIPT JS -->
+        <script>
+            // fungsi buat nampilin jam yang terupdate tiap detik
+            function updateClock() {
+                const now = new Date();
+                const clock = document.getElementById("clock");
+                clock.innerHTML = now.toLocaleTimeString();
+            }
+            setInterval(updateClock, 1000);
+            updateClock();
+
+            // fungsi membuat input nama otomatis menjadi uppercase
+            function toUpperCaseInput(input) {
+                input.value = input.value.toUpperCase();
+            }
+
+            // fungsi buat nambah form baru di bawah form yang udah ada
+            document.addEventListener("click", function(e) {
+                if (e.target && e.target.classList.contains("addFormButton")) {
+                    const formContainer = document.getElementById("formContainer");
+                    
+            // cloning form yang udah ada
+            const newForm = document.createElement("form");
+            newForm.classList.add("form");
+
+            newForm.innerHTML = `
+                <label for="nama">Nama:</label>
+                <input type="text" name="nama" required oninput="toUpperCaseInput(this)">
+                <label for="nim">NIM:</label>
+                <input type="number" name="nim">
+                <label for="gender">Jenis Kelamin:</label>
+                <select name="gender">
+                    <option value="">-- Pilih Jenis Kelamin --</option>
+                    <option value="Laki-laki">Laki-laki</option>
+                    <option value="Perempuan">Perempuan</option>
+                </select>
+                <button type="button" class="submitButton">Submit</button>
+                <button type="button" class="addFormButton">Tambah Form</button>`
+            ;
+
+            formContainer.appendChild(newForm);
+            }
+            });
+
+            // fungsi buat submit form, nampilin alert, dan mereset halaman
+            document.getElementById("formContainer").addEventListener("click", function(e) {
+                if (e.target && e.target.classList.contains('submitButton')) {
+                    alert("Selamat data telah berhasil disimpan");
+                    location.reload(); // halaman akan direfresh setelah alert
+                }
+            });
+        </script>
+
+        <!-- STYLE CSS -->
+        <style>
+            /* untuk form */
+            #clock{
+                font-size: 20px;
+                margin-bottom: 20px;
+                font-weight: bold;
+                font-style: italic;
+            }
+
+            form {
+                display: flex;
+                flex-direction: column;
+                width: 300px;
+            }
+
+            input, select, button {
+                margin: 10px ;
+                padding: 10px;
+            }
+
+            button {
+                background-color: #4dcfe0;
+                color:black;
+                border: none;
+            }
+
+            button:hover {
+                background-color: #15cf15;
+            }
+        </style>
+
+    </body>
+</html>
